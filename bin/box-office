@@ -1,6 +1,10 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env ruby     
+
+#RUBY interpreter above
 
 #Not a ruby file. Put this above so our OS knows to interpret this file through Ruby
 #This is where I will call my CLI
 
-puts "Hello World!"
+require './lib/box_office'          #loading our main lib
+puts "hey"
+#BoxOffice::CLI.new.call              #encapsulation. programming everything into this object entirely
