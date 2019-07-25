@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+#Not a ruby file. Put this above so our OS knows to interpret this file through Ruby
+#This is where I will call my CLI
+
+puts "Hello World!"

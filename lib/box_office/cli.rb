@@ -1,0 +1,4 @@
+class BoxOffice::CLI 
+  
+  
+end
