@@ -5,6 +5,8 @@
 #Not a ruby file. Put this above so our OS knows to interpret this file through Ruby
 #This is where I will call my CLI
 
-require './lib/box_office'          #loading our main lib
-puts "hey"
+#require './lib/box_office'          #loading our main lib
+
+scraper.scrape_data
+
 #BoxOffice::CLI.new.call              #encapsulation. programming everything into this object entirely
