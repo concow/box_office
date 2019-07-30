@@ -2,5 +2,5 @@
 
 require './lib/box_office'          
 
+puts "hey"
 
-#BoxOffice::CLI.new.call              #encapsulation

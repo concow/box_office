@@ -10,7 +10,7 @@ end
 
 require 'open-uri'
 require 'nokogiri'
-require 'pry'
+#require 'pry'
 require 'rake'
 
 require_relative "./box_office/version"
