@@ -3,8 +3,7 @@
 #metaprogramming
 
 module BoxOffice 
-
-
+ 
 end
 
 

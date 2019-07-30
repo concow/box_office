@@ -1,19 +1,16 @@
 #CLI controller
 
-#class BoxOffice::CLI 
-class CLI  
+class BoxOffice::CLI
   def call
+    #BoxOffice::Scraper.new.box_office
+    puts "Welcome to the Top Box Office of the week"
     start
-    list_movies
-    ask_sort_by_rating
-    ask_sort_by_total_gross
-    goodbye
   end
   
   def start 
-    puts "Welcome to our Top Box Office App"
-    puts "Would you like to see the top rated movies of the week? (y/n)"
-    input = gets.strip
+    puts ""
+    puts "What rating and above would you like to see?"
+    input = gets.strip.to_i
     list_movies
     
     puts "Would you like to sort by rating or total gross?"
@@ -21,5 +18,4 @@ class CLI
       list_movies_by_rating
     elsif input == "total gross" || "total" || "Total Gross"
   end
-  
 end
