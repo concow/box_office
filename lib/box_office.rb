@@ -11,9 +11,9 @@ require 'nokogiri'
 require 'rake'
 require 'pry'       #is locate in Gemfile per /bin/console instructions
 
-require_relative "./box_office/version.rb"
-require_relative './box_office/cli.rb'
-require_relative './box_office/movie.rb'
-require_relative './box_office/scraper.rb'
+require_relative "box_office/version"
+require_relative 'box_office/cli'
+require_relative 'box_office/movie'
+require_relative 'box_office/scraper'
 
-#require_relative 'box_office/scraper.rb'
+#require_relative 'box_office/scraper'
