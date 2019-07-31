@@ -6,17 +6,15 @@ module BoxOffice
  
 end
 
-
-
 require 'open-uri'
 require 'nokogiri'
 require 'rake'
-#require 'pry' is locate in Gemfile per /bin/console instructions
+require 'pry'       #is locate in Gemfile per /bin/console instructions
 
 require_relative "./box_office/version"
-require_relative './box_office/cli'
-require_relative './box_office/movie'
-require_relative './box_office/scraper'
+#require_relative './box_office/cli'
+#require_relative './box_office/movie'
+#require_relative './box_office/scraper'
 
 
 class BoxOffice::Movie
@@ -29,22 +27,13 @@ class BoxOffice::Movie
   end 
 end
 
- class Scraper
+class Scraper
   
   def self.scrape_data
     doc = Nokogiri::HTML(open("https://www.rottentomatoes.com/browse/box-office/"))
 
-     films = {}           #init hash
-     #iterate over this #class="panel-body content_body"
-     doc.css(".panel-body content_body").each do |movie|
-      title = movie.css("a._top").text.strip
-      #films[title.to_sym] = {
-        #:rating => films.css(".tMeterScore").text.value
-        #:total_gross => films.css(" ").text
-        #:this_week => films.css(" ").text
-      #}
-  
-       #binding.pry
+    doc.css(".panel-body content_body").each do |movie|    #iterate over this #class="panel-body content_body"
+      binding.pry
     end
   end
 end

@@ -2,5 +2,6 @@
 
 require './lib/box_office'          
 
-puts "hey"
+#puts "hey"
 
+Scraper.scrape_data
