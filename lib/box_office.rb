@@ -10,11 +10,28 @@ end
 
 require 'open-uri'
 require 'nokogiri'
-#require 'pry'
 require 'rake'
+#require 'pry' is locate in Gemfile per /bin/console instructions
 
 require_relative "./box_office/version"
 require_relative './box_office/cli'
 require_relative './box_office/movie'
 require_relative './box_office/scraper'
+
+
+class BoxOffice::Movie
+  attr_accessor :title, :rating, :total_gross, :this_week
+  
+  @@all = []
+  
+  def initialize
+    
+    @@all << self
+  end 
+end
+
+class Scraper 
+  
+  
+end
 
