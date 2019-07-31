@@ -6,4 +6,8 @@ class BoxOffice::Movie
   def initialize
     @@all << self
   end 
+  
+  def self.all
+    return @@all
+  end
 end
