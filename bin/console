@@ -9,3 +9,6 @@
 
 require "irb"
 IRB.start(__FILE__)
+
+require "bundler/setup"
+require "box_office"
