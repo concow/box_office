@@ -2,7 +2,6 @@ PATH
   remote: .
   specs:
     box_office (0.1.0)
-      nokogiri
 
 GEM
   remote: https://rubygems.org/
@@ -23,6 +22,7 @@ PLATFORMS
 DEPENDENCIES
   box_office!
   bundler (~> 2.0)
+  nokogiri
   pry
   rake (~> 10.0)
 

@@ -11,30 +11,9 @@ require 'nokogiri'
 require 'rake'
 require 'pry'       #is locate in Gemfile per /bin/console instructions
 
-require_relative "./box_office/version"
-#require_relative './box_office/cli'
-#require_relative './box_office/movie'
-#require_relative './box_office/scraper'
+require_relative "./box_office/version.rb"
+require_relative './box_office/cli.rb'
+require_relative './box_office/movie.rb'
+require_relative './box_office/scraper.rb'
 
-
-class BoxOffice::Movie
-  attr_accessor :title, :rating, :total_gross, :this_week
-  
-  @@all = []
-  
-  def initialize
-    @@all << self
-  end 
-end
-
-class Scraper
-  
-  def self.scrape_data
-    doc = Nokogiri::HTML(open("https://www.rottentomatoes.com/browse/box-office/"))
-
-    doc.css(".panel-body content_body").each do |movie|    #iterate over this #class="panel-body content_body"
-      binding.pry
-    end
-  end
-end
-
+#require_relative 'box_office/scraper.rb'
