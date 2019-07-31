@@ -1,5 +1,5 @@
 class BoxOffice::Movie
-  attr_accessor :title, :rating, :total_gross
+  attr_accessor :title, :rating, :ranking, :total_gross
   
   @@all = []
   
