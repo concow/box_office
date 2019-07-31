@@ -4,11 +4,13 @@ class BoxOffice::Scraper
   def self.scrape_data
     doc = Nokogiri::HTML(open("https://www.rottentomatoes.com/browse/box-office/"))
     doc.css(".scrollable-table").map do |movie|    #iterate over this #class="panel-body content_body"
-     BoxOffice::Movie ({
-     title: movie.css("td.left")[0].text.strip
-     rating: movie.css("span.tMeterScore")[0].text.strip
-     
-     )}
+     #BoxOffice::Movie ({
+     #title: 
+     movie.css("td.left")[0].text.strip
+     #rating: 
+     movie.css("span.tMeterScore")[0].text.strip
+     movie.css("td").text
+     #)}
      binding.pry
     end
   
