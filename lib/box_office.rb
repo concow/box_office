@@ -12,6 +12,6 @@ require 'rake'
 require 'pry'       
 
 require_relative "./box_office/version"
-require_relative './box_office/cli'
-require_relative './box_office/movie'
-require_relative './box_office/scraper'
+require_relative "./box_office/cli"
+require_relative "./box_office/movie"
+require_relative "./box_office/scraper"
