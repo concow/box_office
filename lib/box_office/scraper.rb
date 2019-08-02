@@ -8,18 +8,23 @@ class BoxOffice::Scraper
     #length of 1
     table = doc.css("div#boxoffice.article.listo")      #original table. info all held here
     
-    current_week = doc.css("h4").text
+    #current_week = doc.css("h4").text
     
     #length of 10
     movies = table.css("tbody tr")                  #many container holds all attributes of the movies
   
     movies.each do |movie|
-      title = movie.css("td.titleColumn").text.strip
-      weekend_total = movie.css("td.ratingColumn").first.text.strip
-      total_gross = movie.css("span.secondaryInfo").text.strip
-      number_weeks = movie.css("td.weeksColumn").text.strip
-      binding.pry
+      movie_object = BoxOffice::Movie.new               #instantiated a new Movie Object
+      
+      #movie_object.url = movie.css("td.titleColumn a")[0]['href']
+      movie_object.title = movie.css("td.titleColumn").text.strip
+      movie_object.weekendtotal = movie.css("td.ratingColumn").first.text.strip
+      movie_object.totalgross = movie.css("span.secondaryInfo").text.strip
+      movie_object.numberweeks = movie.css("td.weeksColumn").text.strip
+      #movie_object.stars = movie.css("td.titleColumn a")[0]['title']
+      
     end
+    binding.pry
   end
 end
 
