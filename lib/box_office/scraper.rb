@@ -9,20 +9,20 @@ class BoxOffice::Scraper
     section = doc.css(".scrollable-table")      #original table. info all held here
     
     #movies has length of 30+
-    movies = section.css("td")          #selecting all td tags that hold data
-    movies = section.css("table.centertable")
-    binding.pry
-    movies.each do |movie|
-      movie_object = BoxOffice::Movie.new
-      #binding.pry
-      #movie_object.title = movie.css("td.left")[0].text.strip
-      movie_object.title = movie.css("td.left")[0]
-      movie_object.rating = movie.css("span.tMeterScore")[0].text.strip
-      movie_object.ranking = movie.css("td")[1].text.strip
-      movie_object.total_gross = movie.css("td")[6].text.strip
+    #movies = section.css("td.left")           #selecting all td tags that hold data
+    movies = section.css("tr td")              #this may be the same as above
+    
+    #movies.each do |movie|
+    #movie_object = BoxOffice::Movie.new
+    #WE MAY want to iterate over section.css("td")    That includes all our info.
+      ranking = section.css("td")[1].text.strip
+      rating = section.css("span.tMeterScore")[0].text.strip
+      title = section.css("td.left")[0].text.strip
+      total_gross = section.css("td")[6].text.strip
      
-     binding.pry
+      binding.pry
      
+     #OLD WAY
      #doc = Nokogiri::HTML(open("https://www.rottentomatoes.com/browse/box-office/"))
      #doc.css(".scrollable-table").each do |movie|    #iterate over this
      #BoxOffice::Movie.new ({
@@ -31,7 +31,7 @@ class BoxOffice::Scraper
      #ranking: movie.css("td")[1].text.strip,
      #total_gross: movie.css("td")[6].text.strip
      #)}
-     binding.pry
-    end
+     
+    #end
   end
 end
