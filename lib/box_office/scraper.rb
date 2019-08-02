@@ -7,10 +7,19 @@ class BoxOffice::Scraper
     
     #NEW OPTION has a length of 1
     section = doc.css(".scrollable-table")      #original table. info all held here
+    #length of 51
+    movies = section.css("tr")                  #many container holds all attributes
+    
+    #section.css("tr")[1].text                  #returns first container all the attributes
+    
+    
+    
+    
     
     #movies has length of 30+
-    #movies = section.css("td.left")           #selecting all td tags that hold data
-    movies = section.css("tr td")              #this may be the same as above
+    #movies = section.css("td.left")           #only lists movie titles
+    #movies = section.css("tr")               #length of 51
+    movies = section.css("tr td")             #length of 450 this may be the same as above
     
     #movies.each do |movie|
     #movie_object = BoxOffice::Movie.new
