@@ -2,34 +2,51 @@ require 'pry'
 class BoxOffice::Scraper
   
   def self.scrape_data
-    url = "https://www.rottentomatoes.com/browse/box-office/"
+    url = "https://www.imdb.com/chart/boxoffice"
     doc = Nokogiri::HTML(open(url))
     
     #NEW OPTION has a length of 1
-    section = doc.css(".scrollable-table")      #original table. info all held here
-    #length of 51
-    movies = section.css("tr")                  #many container holds all attributes
+    table = doc.css("div#boxoffice.article.listo")      #original table. info all held here
+    #binding.pry
     
-    #section.css("tr")[1].text                  #returns first container all the attributes
+    #length of 11
+    movies = table.css("tbody tr")                  #many container holds all attributes of the movies
+  
+    movies.each do |movie|
+      title = movie.css("td.titleColumn").text
+      weekend = movie.css("td.ratingColumn").text
+      gross = movie.css("span.secondaryInfo").text
+      weeks = movie.css("td.weeksColumn").text
+      binding.pry
+    end
+  end
+end
+    #spanclass="secondaryInfo"
     
     
     
-    
-    
+   
+   
+   
+   
+   
+   
+   
+   
+   
     #movies has length of 30+
     #movies = section.css("td.left")           #only lists movie titles
     #movies = section.css("tr")               #length of 51
-    movies = section.css("tr td")             #length of 450 this may be the same as above
+    #movies = section.css("tr td")             #length of 450 this may be the same as above
     
     #movies.each do |movie|
     #movie_object = BoxOffice::Movie.new
     #WE MAY want to iterate over section.css("td")    That includes all our info.
-      ranking = section.css("td")[1].text.strip
-      rating = section.css("span.tMeterScore")[0].text.strip
-      title = section.css("td.left")[0].text.strip
-      total_gross = section.css("td")[6].text.strip
+      #ranking = section.css("td")[1].text.strip
+      #rating = section.css("span.tMeterScore")[0].text.strip
+      #title = section.css("td.left")[0].text.strip
+      #total_gross = section.css("td")[6].text.strip
      
-      binding.pry
      
      #OLD WAY
      #doc = Nokogiri::HTML(open("https://www.rottentomatoes.com/browse/box-office/"))
@@ -42,5 +59,3 @@ class BoxOffice::Scraper
      #)}
      
     #end
-  end
-end
