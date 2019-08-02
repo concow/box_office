@@ -3,10 +3,7 @@ class BoxOffice::Movie
   
   @@all = []
   
-  def initialize(hash)
-    hash.each do |key, value|
-      self.send("#{key}=", value)            #pass these k/v pairs on to objects we're init
-    end
+  def initialize
     @@all << self
   end 
   
