@@ -8,8 +8,6 @@ class BoxOffice::Scraper
     #length of 1
     table = doc.css("div#boxoffice.article.listo")      #original table. info all held here
     
-    #current_week = doc.css("h4").text
-    
     #length of 10
     movies = table.css("tbody tr")                  #many container holds all attributes of the movies
   
@@ -26,6 +24,13 @@ class BoxOffice::Scraper
     end
     binding.pry
   end
+  
+  #def self.scrape_week                              #scrapes current week
+    #url = "https://www.imdb.com/chart/boxoffice"
+    #doc = Nokogiri::HTML(open(url))
+    #current_week = doc.css("h4").text
+    #return current_week
+  #end
 end
 
      
