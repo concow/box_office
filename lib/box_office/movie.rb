@@ -8,12 +8,16 @@ class BoxOffice::Movie
     hash.each do |key, value|
       self.send("#{key}=, value")
     end
-    
-    @@all << self
+    self.save
   end 
   
   def self.all
     return @@all
+  end
+  
+  def save
+    @@all << self
+    return self
   end
   
   def url=(url)

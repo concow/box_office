@@ -2,6 +2,5 @@
 
 require_relative "../lib/box_office"          
 
-#puts "hey"
 
 BoxOffice::CLI.new.start

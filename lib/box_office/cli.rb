@@ -25,6 +25,13 @@ class BoxOffice::CLI
   def menu
     puts "Would you like to see the Top Movies in theaters 'THIS WEEK'? (Yes/No)"   #INTERPOLATE current_week here
     input = gets.strip.downcase
+    list_titles
+  end
+  
+  def list_titles
+    BoxOffice::Movie.all.each do |index, movie|
+      puts "#{index}. #{movie.title}"
+    end
   end
   
   
