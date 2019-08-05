@@ -7,6 +7,11 @@ class BoxOffice::CLI
     menu
     #BoxOffice::Scraper.scrape_data
     
+    #FIND A WAY TO DISPLAY CURRENT WEEK
+    #list movies by ranking
+    #list movies by gross total 
+    #list details, like stars in the movie
+    
   end
   
   def greet

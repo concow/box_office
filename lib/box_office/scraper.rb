@@ -12,7 +12,7 @@ class BoxOffice::Scraper
     movies = table.css("tbody tr")                      #many container holds all attributes of the movies
   
     movies.each do |movie|
-      movie_object = BoxOffice::Movie.new               #instantiated a new Movie Object
+    
       attributes = {
         title: = movie.css("td.titleColumn").text.strip
         url: = movie.css("td.titleColumn a")[0]['href']              #WORKING ON THIS
@@ -21,6 +21,7 @@ class BoxOffice::Scraper
         numberweeks: = movie.css("td.weeksColumn").text.strip
         stars: = movie.css("td.titleColumn a")[0]['title']            #WORKING ON THIS
       }
+      movie_object = BoxOffice::Movie.new               #instantiated a new Movie Object
       #movie.css("td.titleColumn a")[0].attributes['href'].value              #same return for url
       #https://www.imdb.com                                                   #add this to scrape
     #binding.pry
