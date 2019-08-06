@@ -1,11 +1,13 @@
-#require 'pry'
+require 'pry'
 class BoxOffice::CLI 
   
   def start                     #instance method
     greet
     scrape_for_week
     scrape_for_data
-    menu
+    print_details
+    #list_stars
+    #menu
     #list_titles
     #list_titles_by_index
     #list_stars
@@ -20,10 +22,10 @@ class BoxOffice::CLI
   
   def greet
     puts "======================================="
-    puts "Welcome to the Weekend Box Office Chart"
+    puts "Welcome to the Top Box Office (US) App"
     puts "======================================="
     puts ""
-    puts "Here are the top movies for the"
+    puts "This is up to the"
   end
   
   def scrape_for_week
@@ -36,25 +38,52 @@ class BoxOffice::CLI
   end
 
   def menu
-    puts "Would you like to see the Top Movies in theaters 'THIS WEEK? (Yes/No)" #INTERPOLATE current_week here
+    puts "If you would like to see the top movies for the weekend type 'top'"
+    puts "   "
+    puts "   "
+    puts "   "
+    
     input = gets.strip.downcase
-    if input == "yes" || "y" || "Yes"
+    
+    case input
+    when 'top'
       puts ""
       list_titles_by_index
-    else
+    when 'weeks'
+      puts""
+      list_titles_by_week
+    when 'gross_total'
+      puts ""
+      list_by_total
+    when 'details'
+      puts ""
+      list_details
+    when 'exit'
       puts "Goodbye!"
+      menu
     end
   end
 
   def list_titles_by_index
-    BoxOffice::Movie.all.each_with_index do |movie, index|
-      puts "#{index + 1} #{movie.title}"
+    BoxOffice::Movie.all.each.with_index(1) do |movie, index|
+      puts "#{index}. #{movie.title}"
     end
   end
 
   def list_stars
-    BoxOffice::Movie.all.each do |st|
-      puts "#{st.stars}:"
+    BoxOffice::Movie.all.sort do |a, b|
+      #binding.pry
+      puts "#{a.title}: #{b.stars}"
+      puts "#{a.title}: #{b.stars}"
+    end
+  end
+  
+  def print_details
+    BoxOffice::Movie.all.each do |movie|
+      movie.instance_variables.each do |var|
+        puts movie.instance_variable_get(var)
+        puts ""
+      end
     end
   end
 end

@@ -34,6 +34,6 @@ class BoxOffice::Scraper
   def self.scrape_week                  #scrapes current week
     doc = Nokogiri::HTML(open("https://www.imdb.com/chart/boxoffice"))
     current_week = doc.css("h4").text
-    puts #{current_week}
+    puts "#{current_week}"
   end
 end
