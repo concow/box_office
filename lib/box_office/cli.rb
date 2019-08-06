@@ -3,16 +3,18 @@ class BoxOffice::CLI
   
   def start                     #instance method
     greet
-    scrape_movie
-    #menu
-    list_titles
-    list_stars
-    #BoxOffice::Scraper.scrape_data
+    scrape_for_week
+    scrape_for_data
+    menu
+    #list_titles
+    #list_titles_by_index
+    #list_stars
     
-    #FIND A WAY TO DISPLAY CURRENT WEEK
-    #list movies by ranking
-    #list movies by gross total 
-    #list details, like stars in the movie
+    #TO DO:
+    #add current week to an attribute?
+    #ASK: Weeks at the top box office
+    #ASK: then list movies by gross total 
+    #ASK: then list details, like stars in the movie
     
   end
   
@@ -20,38 +22,39 @@ class BoxOffice::CLI
     puts "======================================="
     puts "Welcome to the Weekend Box Office Chart"
     puts "======================================="
-    puts " "
+    puts ""
+    puts "Here are the top movies for the"
   end
   
-  def scrape_movie
-    BoxOffice::Scraper.scrape_data
+  def scrape_for_week
     BoxOffice::Scraper.scrape_week
+    puts ""
   end
   
+  def scrape_for_data
+    BoxOffice::Scraper.scrape_webpage
+  end
+
   def menu
-    puts "Would you like to see the Top Movies in theaters #{BoxOffice::Movie.current_week}? (Yes/No)"   #INTERPOLATE current_week here
+    puts "Would you like to see the Top Movies in theaters 'THIS WEEK? (Yes/No)" #INTERPOLATE current_week here
     input = gets.strip.downcase
-    #if input == "yes" || "y" || "Yes"
-      #list_titles
-    #else
-      #exit!
-  end
-  
-  def list_titles
-    BoxOffice::Movie.all.each do |movie|
-      puts "#{movie.title}"
+    if input == "yes" || "y" || "Yes"
+      puts ""
+      list_titles_by_index
+    else
+      puts "Goodbye!"
     end
   end
-  
-  def display_week
-    
+
+  def list_titles_by_index
+    BoxOffice::Movie.all.each_with_index do |movie, index|
+      puts "#{index + 1} #{movie.title}"
+    end
   end
-  
+
   def list_stars
     BoxOffice::Movie.all.each do |st|
-      puts "#{st.stars}"
+      puts "#{st.stars}:"
     end
   end
-  
-  
 end

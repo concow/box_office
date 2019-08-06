@@ -1,7 +1,7 @@
 require 'pry'
 class BoxOffice::Scraper
   
-  def self.scrape_data
+  def self.scrape_webpage
     url = "https://www.imdb.com/chart/boxoffice"
     doc = Nokogiri::HTML(open(url))
     
