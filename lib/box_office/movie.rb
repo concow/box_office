@@ -6,7 +6,7 @@ class BoxOffice::Movie
   
   def initialize(hash)
     hash.each do |key, value|
-      self.send("#{key}=, value")
+      self.send("#{key}=", value)
     end
     self.save
   end 

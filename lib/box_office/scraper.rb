@@ -14,19 +14,20 @@ class BoxOffice::Scraper
     movies.each do |movie|
     
       attributes = {
-        title: = movie.css("td.titleColumn").text.strip
-        url: = movie.css("td.titleColumn a")[0]['href']              #WORKING ON THIS
-        weekendtotal: = movie.css("td.ratingColumn").first.text.strip
-        grosstotal: = movie.css("span.secondaryInfo").text.strip
-        numberweeks: = movie.css("td.weeksColumn").text.strip
-        stars: = movie.css("td.titleColumn a")[0]['title']            #WORKING ON THIS
-      }
-      movie_object = BoxOffice::Movie.new               #instantiated a new Movie Object
+        :title => movie.css("td.titleColumn").text.strip,
+        :url => movie.css("td.titleColumn a")[0]['href'],              #WORKING ON THIS
+        :weekendtotal => movie.css("td.ratingColumn").first.text.strip,
+        :grosstotal => movie.css("span.secondaryInfo").text.strip,
+        :numberweeks => movie.css("td.weeksColumn").text.strip,
+        :stars => movie.css("td.titleColumn a")[0]['title'],            #WORKING ON THIS
+        }
+      movie_object = BoxOffice::Movie.new(attributes)               #instantiated a new Movie Object
+      
+      
       #movie.css("td.titleColumn a")[0].attributes['href'].value              #same return for url
       #https://www.imdb.com                                                   #add this to scrape
-    #binding.pry
+      #binding.pry
     end
-    
   end
   
   def self.scrape_week                  #scrapes current week
