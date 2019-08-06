@@ -9,14 +9,11 @@ class BoxOffice::CLI
     #list_stars
     #menu
     #list_titles
-    #list_titles_by_index
-    #list_stars
     
     #TO DO:
     #add current week to an attribute?
     #ASK: Weeks at the top box office
-    #ASK: then list movies by gross total 
-    #ASK: then list details, like stars in the movie
+    #ASK: then list movies by gross total
     
   end
   
@@ -48,7 +45,7 @@ class BoxOffice::CLI
     case input
     when 'top'
       puts ""
-      list_titles_by_index
+      list_titles
     when 'weeks'
       puts""
       list_titles_by_week
@@ -79,11 +76,21 @@ class BoxOffice::CLI
   end
   
   def print_details
+    movie_attr = [
+                  "Movie Title",
+                  "URL",
+                  "Weekend Gross:",
+                  "Total Gross",
+                  "Weeks at Top",
+                  "Cast",
+                  ]
     BoxOffice::Movie.all.each do |movie|
-      movie.instance_variables.each do |var|
-        puts movie.instance_variable_get(var)
-        puts ""
+      puts " "
+      puts "****************************************************"
+      movie.instance_variables.each.with_index do |var, index|
+        puts "#{movie_attr[index]}: #{movie.instance_variable_get(var)}"
       end
+      puts "****************************************************"
     end
   end
 end
