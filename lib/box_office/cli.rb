@@ -4,7 +4,9 @@ class BoxOffice::CLI
   def start                     #instance method
     greet
     scrape_movie
-    menu
+    #menu
+    list_titles
+    list_stars
     #BoxOffice::Scraper.scrape_data
     
     #FIND A WAY TO DISPLAY CURRENT WEEK
@@ -27,14 +29,27 @@ class BoxOffice::CLI
   end
   
   def menu
-    puts "Would you like to see the Top Movies in theaters 'THIS WEEK'? (Yes/No)"   #INTERPOLATE current_week here
+    puts "Would you like to see the Top Movies in theaters #{BoxOffice::Movie.current_week}? (Yes/No)"   #INTERPOLATE current_week here
     input = gets.strip.downcase
-    #list_titles
+    #if input == "yes" || "y" || "Yes"
+      #list_titles
+    #else
+      #exit!
   end
   
   def list_titles
-    BoxOffice::Movie.all.each_with_index(1) do |index, movie|
-      puts "#{index}. #{movie.title}"
+    BoxOffice::Movie.all.each do |movie|
+      puts "#{movie.title}"
+    end
+  end
+  
+  def display_week
+    
+  end
+  
+  def list_stars
+    BoxOffice::Movie.all.each do |st|
+      puts "#{st.stars}"
     end
   end
   

@@ -21,7 +21,8 @@ class BoxOffice::Scraper
         :numberweeks => movie.css("td.weeksColumn").text.strip,
         :stars => movie.css("td.titleColumn a")[0]['title'],            #WORKING ON THIS
         }
-      movie_object = BoxOffice::Movie.new(attributes)               #instantiated a new Movie Object
+      
+        movie = BoxOffice::Movie.new(attributes)               #instantiated a new Movie Object
       
       
       #movie.css("td.titleColumn a")[0].attributes['href'].value              #same return for url
@@ -33,6 +34,6 @@ class BoxOffice::Scraper
   def self.scrape_week                  #scrapes current week
     doc = Nokogiri::HTML(open("https://www.imdb.com/chart/boxoffice"))
     current_week = doc.css("h4").text
-    return current_week
+    puts #{current_week}
   end
 end
