@@ -2,7 +2,7 @@ class BoxOffice::CLI
 
   def start             
     greet
-    scrape_for_week
+    #scrape_for_week
     scrape_for_data
     run
   end
@@ -13,16 +13,13 @@ class BoxOffice::CLI
     puts "Welcome to the Top Box Office (US) App"
     puts "======================================="
     puts ""
-    puts "These are the top movies for:"
-  end
-  
-  def scrape_for_week
-    BoxOffice::Scraper.scrape_week
-    puts ""
+    puts "THESE ARE THE TOP MOVIES FOR:"
   end
   
   def scrape_for_data
     BoxOffice::Scraper.scrape_webpage
+    BoxOffice::Scraper.scrape_week
+    puts ""
   end
 
   def run
@@ -33,6 +30,7 @@ class BoxOffice::CLI
     
     input = gets.strip.upcase
     if input == "Y"
+      puts ""
       menu
     elsif input == "N"
       puts ""
@@ -47,24 +45,23 @@ class BoxOffice::CLI
   end
     
   def menu
-    puts "--------------------------------------------------------------------------------"
-    puts "To see the Top 10 movies for this weekend type 'top'."
+    puts "-------------------------------------------------------"
+    puts "* To see the Top 10 movies for this weekend type 'top'"
+    puts "* To see their weekend earnings 'weekend'"
+    puts "* To see the details of each movie type 'detail'"
     puts ""
-    puts "To see their weekend earnings 'weekend'."
-    puts ""
-    puts "To see the details of each movie type 'detail'."
-    puts ""
-    puts "To exit the app type 'exit'."
-    puts "--------------------------------------------------------------------------------"
+    puts "To exit the app type 'exit'"
+    puts "-------------------------------------------------------"
 
     input = gets.strip.downcase
+    #scrape_for_data
     
     case input
     when 'top'
       puts ""
       list_titles
       loop_method
-    when 'total'
+    when 'weekend'
       puts ""
       sort_earnings
       loop_method
@@ -75,12 +72,18 @@ class BoxOffice::CLI
     when 'exit'
       puts ""
       puts "Goodbye!"
+    
+    else
+      puts ""
+      puts "I don't understand that request."
+      sleep 1.5
+      menu
     end
   end
   
   def loop_method
     puts ""
-    sleep 2.0 
+    sleep 1.5 
     run
   end
 
