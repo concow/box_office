@@ -7,29 +7,15 @@ class BoxOffice::CLI
     greet
     scrape_for_week
     scrape_for_data
-    print_details
-    #list_titles
-    #sort_weekendtotal
-    
-    #sort_grosstotal
-    #sort_numberweeks
-    #menu
-    
-    #TO DO:
-    #ASK: Weeks at the top box office
-    #ASK: then list movies by gross total
-    
+    menu
   end
-  def printering
-    BoxOffice::Movie.all.each {current_week}
-    puts "#{current_week}"
-  end
+
   def greet
     puts "======================================="
     puts "Welcome to the Top Box Office (US) App"
     puts "======================================="
     puts ""
-    puts "This is up to the"
+    puts "These are the top movies up to the"
   end
   
   def scrape_for_week
@@ -42,29 +28,50 @@ class BoxOffice::CLI
   end
 
   def menu
-    puts "If you would like to see the top movies for this weekend please type 'top'."
+    ask_options
+  end
+    
+  def ask_options
+    puts "--------------------------------------------------------------------------------"
+    puts "Would you like to see our search options (Yes/No)"
+    
+    input = gets.strip.downcase
+    
+    if input == "Yes" || "y"
+      call
+    else 
+      #exit_method
+    end
+  end
+    
+  def call
+    puts "--------------------------------------------------------------------------------"
+    puts "If you would like to see the top 10 movies for this weekend type 'top'."
     puts ""
-    puts "If you would like to see the top grossed movies and their totals type 'weekend'."
+    puts "To see the top grossed movies by total type 'total'."
     puts ""
-    puts "If you would like to see the details of each movie type 'details."
+    puts "To see the details of each movie type 'detail'."
+    puts ""
+    puts "To exit the app type 'exit'."
+    puts "--------------------------------------------------------------------------------"
+
     input = gets.strip.downcase
     
     case input
     when 'top'
       puts ""
       list_titles
+      some_loop_method
     when 'weekend'
       puts ""
-      list_titles_by_week
-    when 'gross_total'
+      sort_weekendtotal
+    when 'detail'
       puts ""
-      list_by_total
-    when 'details'
-      puts ""
-      list_details
+      print_details
     when 'exit'
+      puts ""
       puts "Goodbye!"
-      menu
+      #exit_method
     end
   end
 
@@ -79,17 +86,19 @@ class BoxOffice::CLI
       puts "#{movie.title}: #{movie.weekendtotal}"
     }
   end
-
-  def sort_grosstotal
-    BoxOffice::Movie.all.map( &:to_s ).sort {|a,b| b.grosstotal <=> a.grosstotal}.each.with_index(1) do |movie, index|
-      puts "#{movie.title}"
-    end
-  end
   
-  def sort_numberweeks
-    BoxOffice::Movie.all.reverse.sort_by {|key, value| value
-    puts "#{key.title} #{key.numberweeks}"
-    }
+  def some_loop_method
+    #sleep
+    puts ""
+    puts "Would you like to see out options again? (Yes/No)"
+    
+    input = gets.strip.downcase
+    
+    if input == "Yes" || "y"
+      ask_options
+    else
+      #exit_method
+    end
   end
   
   def print_details
