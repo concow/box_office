@@ -1,6 +1,8 @@
 require 'pry'
 class BoxOffice::CLI 
+  
   attr_accessor :sorted_movies
+  
   def start                     #instance method
     greet
     scrape_for_week
@@ -37,9 +39,8 @@ class BoxOffice::CLI
   end
 
   def menu
-    puts "If you would like to see the top movies for the weekend type 'top'"
+    puts "If you would like to see the top movies for this weekend please type 'top'"
     puts ""
-    
     input = gets.strip.downcase
     
     case input
@@ -75,17 +76,15 @@ class BoxOffice::CLI
   end
   
   def sort_weekendtotal
-    BoxOffice::Movie.all.reverse {|a,b| b.weekendtotal <=> a.weekendtotal}.each.with_index(1) do |movie, index|
-      puts "#{index}. #{movie.title}"
-      puts "    #{movie.weekendtotal}"
-    end
+    BoxOffice::Movie.all.sort_by {|key, value| value
+      puts "#{key.title}: #{key.weekendtotal}"
+    }
   end
   
   def sort_tester
-    @sorted_movies = BoxOffice::Movie.all.reverse
-    @sorted_movies.sort {|a,b| b.grosstotal <=> a.grosstotal}.each.with_index(1) do |movie, index|
-      puts "#{index}. #{movie.title} #{movie.grosstotal}"
-    end
+    BoxOffice::Movie.all.sort_by {|key, value| value
+      puts "#{key.title}: #{key.weekendtotal}"
+    }
   end
 
   def print_details
@@ -100,9 +99,9 @@ class BoxOffice::CLI
     BoxOffice::Movie.all.each do |movie|
       puts " "
       puts "****************************************************"
-      movie.instance_variables.each.with_index do |var, index|
-        puts "#{movie_attr[index]}: #{movie.instance_variable_get(var)}"
-      end
+        movie.instance_variables.each.with_index do |var, index|
+         puts "#{movie_attr[index]}: #{movie.instance_variable_get(var)}"
+        end
       puts "****************************************************"
     end
   end
