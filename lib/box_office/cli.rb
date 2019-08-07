@@ -5,6 +5,7 @@ class BoxOffice::CLI
     greet
     scrape_for_week
     scrape_for_data
+    #sort_weekendtotal
     sort_tester
     #sort_grosstotal
     #print_details
@@ -74,7 +75,7 @@ class BoxOffice::CLI
   end
   
   def sort_weekendtotal
-    BoxOffice::Movie.all.sort {|a,b| b.weekendtotal <=> a.weekendtotal}.each.with_index(1) do |movie, index|
+    BoxOffice::Movie.all.reverse {|a,b| b.weekendtotal <=> a.weekendtotal}.each.with_index(1) do |movie, index|
       puts "#{index}. #{movie.title}"
       puts "    #{movie.weekendtotal}"
     end
@@ -82,7 +83,7 @@ class BoxOffice::CLI
   
   def sort_tester
     @sorted_movies = BoxOffice::Movie.all.reverse
-    @sorted_movies.each.with_index(1) do |movie,index|
+    @sorted_movies.sort {|a,b| b.grosstotal <=> a.grosstotal}.each.with_index(1) do |movie, index|
       puts "#{index}. #{movie.title} #{movie.grosstotal}"
     end
   end
