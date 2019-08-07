@@ -7,20 +7,23 @@ class BoxOffice::CLI
     greet
     scrape_for_week
     scrape_for_data
-    #sort_weekendtotal
-    sort_tester
-    #sort_grosstotal
     #print_details
-    #menu
     #list_titles
+    #sort_weekendtotal
+    
+    sort_grosstotal
+    #sort_numberweeks
+    #menu
     
     #TO DO:
-    #add current week to an attribute?
     #ASK: Weeks at the top box office
     #ASK: then list movies by gross total
     
   end
-  
+  def printering
+    BoxOffice::Movie.all.each {current_week}
+    puts "#{current_week}"
+  end
   def greet
     puts "======================================="
     puts "Welcome to the Top Box Office (US) App"
@@ -67,26 +70,25 @@ class BoxOffice::CLI
       puts "#{index}. #{movie.title}"
     end
   end
+  
+  def sort_weekendtotal
+    BoxOffice::Movie.all.sort_by {|movie| movie.weekendtotal
+      puts "#{movie.title}: #{movie.weekendtotal}"
+    }
+  end
 
   def sort_grosstotal
-    BoxOffice::Movie.all.sort {|a,b| b.grosstotal <=> a.grosstotal}.each.with_index(1) do |movie, index|
-      puts "#{index}. #{movie.title}"
-      puts "    - #{movie.grosstotal}"
+    BoxOffice::Movie.all.map( &:to_s ).sort {|a,b| b.grosstotal <=> a.grosstotal}.each.with_index(1) do |movie, index|
+      puts "#{movie.title}"
     end
   end
   
-  def sort_weekendtotal
-    BoxOffice::Movie.all.sort_by {|key, value| value
-      puts "#{key.title}: #{key.weekendtotal}"
+  def sort_numberweeks
+    BoxOffice::Movie.all.reverse.sort_by {|key, value| value
+    puts "#{key.title} #{key.numberweeks}"
     }
   end
   
-  def sort_tester
-    BoxOffice::Movie.all.sort_by {|key, value| value
-      puts "#{key.title}: #{key.weekendtotal}"
-    }
-  end
-
   def print_details
     movie_attr = [
                   "Movie Title",

@@ -1,5 +1,5 @@
 class BoxOffice::Movie
-  attr_accessor :title, :weekendtotal, :grosstotal, :numberweeks, :stars, :current_week, :url
+  attr_accessor :title, :weekendtotal, :grosstotal, :numberweeks, :stars, :url, :current_week
   attr_writer :url
 
   @@all = []
