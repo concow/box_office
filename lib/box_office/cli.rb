@@ -11,6 +11,7 @@ class BoxOffice::CLI
   end
 
   def greet
+    puts ""
     puts "======================================="
     puts "Welcome to the Top Box Office (US) App"
     puts "======================================="
@@ -32,17 +33,23 @@ class BoxOffice::CLI
   end
     
   def ask
-    sleep 2.0
+    sleep (0.5)
     puts "--------------------------------------------------"
-    puts "Would you like to see our search options? (Yes/No)"
+    puts "Would you like to see our search options? (Y/N)"
     puts "--------------------------------------------------"
     
-    input = gets.strip.downcase
+    input = gets.chomp.downcase
     
-    if input = "Yes" || "y"
+    if input == "Y"
       menu
-    elsif 
-      exit
+    elsif input == "N" 
+      puts ""
+      puts "Goodbye!"
+        exit
+    else input == ""
+      puts ""
+      puts "I don't understand that request."
+      ask
     end
   end
     
@@ -57,25 +64,25 @@ class BoxOffice::CLI
     puts "To exit the app type 'exit'."
     puts "--------------------------------------------------------------------------------"
 
-    input = gets.strip.downcase
+    input = gets.strip
     
     case input
     when 'top'
       puts ""
       list_titles
-      loop_method
+      sleep 0.1
+      ask
     when 'weekend'
       puts ""
       sort_weekendtotal
-      loop_method
+      ask
     when 'detail'
       puts ""
       print_details
-      loop_method
+      ask
     when 'exit'
       puts ""
       puts "Goodbye!"
-      #exit_method
     end
   end
 
@@ -89,20 +96,6 @@ class BoxOffice::CLI
     BoxOffice::Movie.all.sort_by {|movie| movie.weekendtotal
       puts "#{movie.title}: #{movie.weekendtotal}"
     }
-  end
-  
-  def loop_method
-    sleep 2.0
-    puts ""
-    puts "Would you like to see out options again? (Yes/No)"
-    
-    input = gets.strip.downcase
-    
-    if input == "Yes" || "y"
-      ask
-    else
-      #exit_method
-    end
   end
   
   def print_details
