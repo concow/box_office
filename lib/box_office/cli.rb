@@ -7,11 +7,11 @@ class BoxOffice::CLI
     greet
     scrape_for_week
     scrape_for_data
-    #print_details
+    print_details
     #list_titles
     #sort_weekendtotal
     
-    sort_grosstotal
+    #sort_grosstotal
     #sort_numberweeks
     #menu
     
@@ -42,15 +42,18 @@ class BoxOffice::CLI
   end
 
   def menu
-    puts "If you would like to see the top movies for this weekend please type 'top'"
+    puts "If you would like to see the top movies for this weekend please type 'top'."
     puts ""
+    puts "If you would like to see the top grossed movies and their totals type 'weekend'."
+    puts ""
+    puts "If you would like to see the details of each movie type 'details."
     input = gets.strip.downcase
     
     case input
     when 'top'
       puts ""
       list_titles
-    when 'weeks'
+    when 'weekend'
       puts ""
       list_titles_by_week
     when 'gross_total'
