@@ -7,7 +7,7 @@ class BoxOffice::CLI
     greet
     scrape_for_week
     scrape_for_data
-    menu
+    run
   end
 
   def greet
@@ -27,24 +27,26 @@ class BoxOffice::CLI
     BoxOffice::Scraper.scrape_webpage
   end
 
-  def menu
-    ask_options
+  def run
+    ask
   end
     
-  def ask_options
-    puts "--------------------------------------------------------------------------------"
-    puts "Would you like to see our search options (Yes/No)"
+  def ask
+    sleep 2.0
+    puts "--------------------------------------------------"
+    puts "Would you like to see our search options? (Yes/No)"
+    puts "--------------------------------------------------"
     
     input = gets.strip.downcase
     
-    if input == "Yes" || "y"
-      call
-    else 
-      #exit_method
+    if input = "Yes" || "y"
+      menu
+    elsif 
+      exit
     end
   end
     
-  def call
+  def menu
     puts "--------------------------------------------------------------------------------"
     puts "If you would like to see the top 10 movies for this weekend type 'top'."
     puts ""
@@ -61,13 +63,15 @@ class BoxOffice::CLI
     when 'top'
       puts ""
       list_titles
-      some_loop_method
+      loop_method
     when 'weekend'
       puts ""
       sort_weekendtotal
+      loop_method
     when 'detail'
       puts ""
       print_details
+      loop_method
     when 'exit'
       puts ""
       puts "Goodbye!"
@@ -87,15 +91,15 @@ class BoxOffice::CLI
     }
   end
   
-  def some_loop_method
-    #sleep
+  def loop_method
+    sleep 2.0
     puts ""
     puts "Would you like to see out options again? (Yes/No)"
     
     input = gets.strip.downcase
     
     if input == "Yes" || "y"
-      ask_options
+      ask
     else
       #exit_method
     end
