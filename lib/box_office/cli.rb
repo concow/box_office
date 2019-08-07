@@ -5,8 +5,8 @@ class BoxOffice::CLI
     greet
     scrape_for_week
     scrape_for_data
-    print_details
-    #list_stars
+    print_grosstotal
+    #print_details
     #menu
     #list_titles
     
@@ -27,7 +27,7 @@ class BoxOffice::CLI
   
   def scrape_for_week
     BoxOffice::Scraper.scrape_week
-    puts ""
+    #puts ""
   end
   
   def scrape_for_data
@@ -36,9 +36,6 @@ class BoxOffice::CLI
 
   def menu
     puts "If you would like to see the top movies for the weekend type 'top'"
-    puts "   "
-    puts "   "
-    puts "   "
     
     input = gets.strip.downcase
     
@@ -61,7 +58,7 @@ class BoxOffice::CLI
     end
   end
 
-  def list_titles_by_index
+  def list_titles
     BoxOffice::Movie.all.each.with_index(1) do |movie, index|
       puts "#{index}. #{movie.title}"
     end
@@ -73,6 +70,16 @@ class BoxOffice::CLI
       puts "#{a.title}: #{b.stars}"
       puts "#{a.title}: #{b.stars}"
     end
+  end
+  
+  def print_grosstotal
+    BoxOffice::Movie.all.sort {|a,b| b.grosstotal <=> a.grosstotal}.each.with_index(1) do |movie, index|
+      puts "#{index}. #{movie.title}"
+      puts "    #{movie.grosstotal}"
+  end
+  
+  def print_weekendtotal
+    
   end
   
   def print_details
@@ -92,5 +99,6 @@ class BoxOffice::CLI
       end
       puts "****************************************************"
     end
+  end
   end
 end
