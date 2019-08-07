@@ -1,9 +1,6 @@
-require 'pry'
 class BoxOffice::CLI 
-  
-  attr_accessor :sorted_movies
-  
-  def start                     #instance method
+
+  def start             
     greet
     scrape_for_week
     scrape_for_data
@@ -16,7 +13,7 @@ class BoxOffice::CLI
     puts "Welcome to the Top Box Office (US) App"
     puts "======================================="
     puts ""
-    puts "These are the top movies up to the"
+    puts "These are the top movies for:"
   end
   
   def scrape_for_week
@@ -29,61 +26,62 @@ class BoxOffice::CLI
   end
 
   def run
-    ask
-  end
+    sleep 1.0
+    puts "-------------------------------------------------------"
+    puts "Would you like to see our search options (again)? (Y/N)"
+    puts "-------------------------------------------------------"
     
-  def ask
-    sleep (0.5)
-    puts "--------------------------------------------------"
-    puts "Would you like to see our search options? (Y/N)"
-    puts "--------------------------------------------------"
-    
-    input = gets.chomp.downcase
-    
+    input = gets.strip.upcase
     if input == "Y"
       menu
-    elsif input == "N" 
+    elsif input == "N"
       puts ""
-      puts "Goodbye!"
-        exit
-    else input == ""
+      puts "Thank you! Have a good one!"
+      exit
+    else
       puts ""
       puts "I don't understand that request."
-      ask
+      puts ""
+      run
     end
   end
     
   def menu
     puts "--------------------------------------------------------------------------------"
-    puts "If you would like to see the top 10 movies for this weekend type 'top'."
+    puts "To see the Top 10 movies for this weekend type 'top'."
     puts ""
-    puts "To see the top grossed movies by total type 'total'."
+    puts "To see their weekend earnings 'weekend'."
     puts ""
     puts "To see the details of each movie type 'detail'."
     puts ""
     puts "To exit the app type 'exit'."
     puts "--------------------------------------------------------------------------------"
 
-    input = gets.strip
+    input = gets.strip.downcase
     
     case input
     when 'top'
       puts ""
       list_titles
-      sleep 0.1
-      ask
-    when 'weekend'
+      loop_method
+    when 'total'
       puts ""
-      sort_weekendtotal
-      ask
+      sort_earnings
+      loop_method
     when 'detail'
       puts ""
       print_details
-      ask
+      loop_method
     when 'exit'
       puts ""
       puts "Goodbye!"
     end
+  end
+  
+  def loop_method
+    puts ""
+    sleep 2.0 
+    run
   end
 
   def list_titles
@@ -92,7 +90,7 @@ class BoxOffice::CLI
     end
   end
   
-  def sort_weekendtotal
+  def sort_earnings
     BoxOffice::Movie.all.sort_by {|movie| movie.weekendtotal
       puts "#{movie.title}: #{movie.weekendtotal}"
     }
