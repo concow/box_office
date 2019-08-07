@@ -1,12 +1,12 @@
 require 'pry'
 class BoxOffice::CLI 
-  
+  attr_accessor :sorted_movies
   def start                     #instance method
     greet
     scrape_for_week
     scrape_for_data
-    print_grosstotal
-    
+    sort_tester
+    #sort_grosstotal
     #print_details
     #menu
     #list_titles
@@ -66,19 +66,27 @@ class BoxOffice::CLI
     end
   end
 
-  def print_grosstotal
-    BoxOffice::Movie.all.sort_by {|movies| movie.grosstotal} do |movie, index|
+  def sort_grosstotal
+    BoxOffice::Movie.all.sort {|a,b| b.grosstotal <=> a.grosstotal}.each.with_index(1) do |movie, index|
       puts "#{index}. #{movie.title}"
-      puts "    #{movie.grosstotal}"
+      puts "    - #{movie.grosstotal}"
+    end
   end
   
-  def print_weekendtotal
+  def sort_weekendtotal
     BoxOffice::Movie.all.sort {|a,b| b.weekendtotal <=> a.weekendtotal}.each.with_index(1) do |movie, index|
       puts "#{index}. #{movie.title}"
       puts "    #{movie.weekendtotal}"
     end
   end
   
+  def sort_tester
+    @sorted_movies = BoxOffice::Movie.all.reverse
+    @sorted_movies.each.with_index(1) do |movie,index|
+      puts "#{index}. #{movie.title} #{movie.grosstotal}"
+    end
+  end
+
   def print_details
     movie_attr = [
                   "Movie Title",
