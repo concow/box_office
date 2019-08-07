@@ -1,8 +1,9 @@
-# BoxOffice
+# Top Box Office
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/box_office`. To experiment with that code, run `bin/console` for an interactive prompt.
+### Welcome
 
-TODO: Delete this and the text above, and describe your gem
+This Ruby Gem provides a CLI to search the Top Box Office movies by current week as 
+published by IMDB.com
 
 ## Installation
 
@@ -14,7 +15,7 @@ gem 'box_office'
 
 And then execute:
 
-    $ bundle
+    $ bundle install
 
 Or install it yourself as:
 
@@ -22,8 +23,10 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Run the program below, then follow commands by the terminal prompts.
 
+    $ ./bin/box-office
+    
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
