@@ -6,10 +6,10 @@ class BoxOffice::Scraper
     doc = Nokogiri::HTML(open(url))
     
     #length of 1
-    table = doc.css("div#boxoffice.article.listo")      #original table. info all held here
+    table = doc.css("div#boxoffice.article.listo")      
     
     #length of 10
-    movies = table.css("tbody tr")                      #many container holds all attributes of the movies
+    movies = table.css("tbody tr")
   
     movies.each do |movie|
     
@@ -20,9 +20,9 @@ class BoxOffice::Scraper
         :grosstotal => movie.css("span.secondaryInfo").text.strip,
         :numberweeks => movie.css("td.weeksColumn").text.strip,
         :stars => movie.css("td.titleColumn a")[0]['title'],            
-        }
-      
-        movie_object = BoxOffice::Movie.new(attributes)               #instantiated a new Movie Object
+      }
+        #instantiated a new Movie Object
+        movie_object = BoxOffice::Movie.new(attributes)               
     end
   end
   

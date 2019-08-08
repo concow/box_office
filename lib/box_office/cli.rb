@@ -2,7 +2,6 @@ class BoxOffice::CLI
 
   def start             
     greet
-    #scrape_for_week
     scrape_for_data
     run
   end
@@ -46,15 +45,14 @@ class BoxOffice::CLI
     
   def menu
     puts "-------------------------------------------------------"
-    puts "* To see the Top 10 movies for this weekend type 'top'"
-    puts "* To see their weekend earnings 'weekend'"
-    puts "* To see the details of each movie type 'detail'"
+    puts "* To see the Top 10 movies for this weekend TYPE 'top'"
+    puts "* To see their weekend earnings TYPE 'weekend'"
+    puts "* To see the details of each movie TYPE 'detail'"
     puts ""
     puts "To exit the app type 'exit'"
     puts "-------------------------------------------------------"
 
     input = gets.strip.downcase
-    #scrape_for_data
     
     case input
     when 'top'
