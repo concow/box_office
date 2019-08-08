@@ -1,4 +1,3 @@
-require 'pry'
 class BoxOffice::Scraper
   
   def self.scrape_webpage
