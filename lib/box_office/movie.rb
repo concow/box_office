@@ -3,24 +3,30 @@ class BoxOffice::Movie
   attr_reader :url
 
   @@all = []
-  
+
   def initialize(hash)
     hash.each do |key, value|
       self.send("#{key}=", value)
     end
     self.save
-  end 
-  
-  def self.all
-    return @@all
   end
-  
+
+  def self.all
+     @@all
+  end
+
   def save
     @@all << self
-    return self
+     self
   end
-  
+
   def url=(url)
     @url = "https://www.imdb.com" + url
+  end
+
+  def self.search(string)
+    all.select do |movie|
+      movie.stars.include?(string)
+    end
   end
 end

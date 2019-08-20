@@ -1,6 +1,6 @@
-class BoxOffice::CLI 
+class BoxOffice::CLI
 
-  def start             
+  def start
     greet
     scrape_for_data
     run
@@ -14,10 +14,11 @@ class BoxOffice::CLI
     puts ""
     puts "THESE ARE THE TOP MOVIES FOR:"
   end
-  
+
   def scrape_for_data
     BoxOffice::Scraper.scrape_webpage
     BoxOffice::Scraper.scrape_week
+    binding.pry
     puts ""
   end
 
@@ -26,7 +27,7 @@ class BoxOffice::CLI
     puts "-------------------------------------------------------"
     puts "Would you like to see our search options (again)? (Y/N)"
     puts "-------------------------------------------------------"
-    
+
     input = gets.strip.upcase
     if input == "Y"
       puts ""
@@ -42,7 +43,7 @@ class BoxOffice::CLI
       run
     end
   end
-    
+
   def menu
     puts "-------------------------------------------------------"
     puts "* To see the Top 10 movies for this weekend TYPE 'top'"
@@ -53,7 +54,7 @@ class BoxOffice::CLI
     puts "-------------------------------------------------------"
 
     input = gets.strip.downcase
-    
+
     case input
     when 'top'
       puts ""
@@ -70,7 +71,7 @@ class BoxOffice::CLI
     when 'exit'
       puts ""
       puts "Goodbye!"
-    
+
     else
       puts ""
       puts "I don't understand that request."
@@ -78,10 +79,10 @@ class BoxOffice::CLI
       menu
     end
   end
-  
+
   def loop_method
     puts ""
-    sleep 1.5 
+    sleep 1.5
     run
   end
 
@@ -90,28 +91,40 @@ class BoxOffice::CLI
       puts "#{index}. #{movie.title}"
     end
   end
-  
+
   def sort_earnings
     BoxOffice::Movie.all.sort_by {|movie| movie.weekendtotal
       puts "#{movie.title}: #{movie.weekendtotal}"
     }
   end
-  
+
   def print_details
-    movie_attr = [
-                  "Movie Title",
-                  "URL",
-                  "Weekend Gross:",
-                  "Total Gross",
-                  "Weeks at Top",
-                  "Cast",
-                  ]
+    # movie_attr = [
+    #               "Movie Title",
+    #               "URL",
+    #               "Weekend Gross:",
+    #               "Total Gross",
+    #               "Weeks at Top",
+    #               "Cast",
+    #               ]
+    # BoxOffice::Movie.all.each do |movie|
+    #   puts " "
+    #   puts "****************************************************"
+    #     movie.instance_variables.each.with_index do |var, index|
+    #      puts "#{movie_attr[index]}: #{movie.instance_variable_get(var)}"
+    #     end
+    #   puts "****************************************************"
+    # end
+
     BoxOffice::Movie.all.each do |movie|
       puts " "
       puts "****************************************************"
-        movie.instance_variables.each.with_index do |var, index|
-         puts "#{movie_attr[index]}: #{movie.instance_variable_get(var)}"
-        end
+          puts "Movie Title: #{movie.title}"
+          puts "URL: #{movie.url}"
+          puts "Weekend Gross: #{movie.weekendtotal}"
+          puts "Total Gross: #{movie.grosstotal}"
+          puts "Weeks at Top: #{movie.numberweeks}"
+          puts "Cast: #{movie.stars}"
       puts "****************************************************"
     end
   end
