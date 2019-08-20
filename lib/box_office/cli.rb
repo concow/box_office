@@ -99,23 +99,6 @@ class BoxOffice::CLI
   end
 
   def print_details
-    # movie_attr = [
-    #               "Movie Title",
-    #               "URL",
-    #               "Weekend Gross:",
-    #               "Total Gross",
-    #               "Weeks at Top",
-    #               "Cast",
-    #               ]
-    # BoxOffice::Movie.all.each do |movie|
-    #   puts " "
-    #   puts "****************************************************"
-    #     movie.instance_variables.each.with_index do |var, index|
-    #      puts "#{movie_attr[index]}: #{movie.instance_variable_get(var)}"
-    #     end
-    #   puts "****************************************************"
-    # end
-
     BoxOffice::Movie.all.each do |movie|
       puts " "
       puts "****************************************************"
